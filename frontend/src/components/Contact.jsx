@@ -4,24 +4,33 @@ import axios from 'axios'
 
 export default function Contact() {
     const { t } = useContext(AppContext)
-    const [formData, setFormData] = useState({ name: '', phone: '', message: '' })
-    const [status, setStatus] = useState(null) // 'sending', 'success', 'error'
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        course: '',
+        query: '',
+    })
+    const [status, setStatus] = useState(null) // 'sending' | 'success' | 'error'
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!formData.name || !formData.phone) return
+        if (!formData.name || !formData.phone || !formData.course) return
 
         setStatus('sending')
         try {
-            // Simulate/Real API call
             await axios.post('/api/contact', formData)
             setStatus('success')
-            setFormData({ name: '', phone: '', message: '' })
-            setTimeout(() => setStatus(null), 5000)
+            setFormData({ name: '', email: '', phone: '', course: '', query: '' })
+            setTimeout(() => setStatus(null), 6000)
         } catch (err) {
             console.error(err)
             setStatus('error')
-            setTimeout(() => setStatus(null), 5000)
+            setTimeout(() => setStatus(null), 6000)
         }
     }
 
@@ -65,7 +74,7 @@ export default function Contact() {
                         </div>
 
                         {/* Map Placeholder */}
-                        <div className="rounded-2xl overflow-hidden h-64 grayscale dark:invert-[0.05] dark:hue-rotate-180 opacity-80 border border-slate-200 dark:border-slate-700">
+                        <div className="rounded-2xl overflow-hidden h-64 opacity-80 border border-slate-200 dark:border-slate-700">
                             <div className="w-full h-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-sm font-medium">
                                 Google Map Embed Placeholder
                             </div>
@@ -73,51 +82,119 @@ export default function Contact() {
                     </div>
 
                     {/* Form Side */}
-                    <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 p-8 sm:p-10">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 p-8 sm:p-10"
+                    >
                         <div className="space-y-5">
+
+                            {/* Name */}
                             <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.yourName}</label>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                    {t.yourName} <span className="text-red-400">*</span>
+                                </label>
                                 <input
+                                    id="contact-name"
                                     type="text"
+                                    name="name"
                                     value={formData.name}
-                                    onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                    onChange={handleChange}
                                     className="input-field"
                                     placeholder="John Doe"
                                     required
                                 />
                             </div>
+
+                            {/* Email */}
                             <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.yourPhone}</label>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                    {t.yourEmail}
+                                </label>
                                 <input
+                                    id="contact-email"
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="input-field"
+                                    placeholder="you@example.com"
+                                />
+                            </div>
+
+                            {/* Phone */}
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                    {t.yourPhone} <span className="text-red-400">*</span>
+                                </label>
+                                <input
+                                    id="contact-phone"
                                     type="tel"
+                                    name="phone"
                                     value={formData.phone}
-                                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                                    onChange={handleChange}
                                     className="input-field"
                                     placeholder="+91 XXXXX XXXXX"
                                     required
                                 />
                             </div>
+
+                            {/* Select Course */}
                             <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.yourMessage}</label>
-                                <textarea
-                                    rows="4"
-                                    value={formData.message}
-                                    onChange={e => setFormData({ ...formData, message: e.target.value })}
-                                    className="input-field resize-none"
-                                    placeholder="I am interested in..."
-                                ></textarea>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                    {t.selectCourse} <span className="text-red-400">*</span>
+                                </label>
+                                <select
+                                    id="contact-course"
+                                    name="course"
+                                    value={formData.course}
+                                    onChange={handleChange}
+                                    className="input-field"
+                                    required
+                                >
+                                    <option value="" disabled>— {t.selectCourse} —</option>
+                                    {t.courseOptions.map((opt) => (
+                                        <option key={opt} value={opt}>{opt}</option>
+                                    ))}
+                                </select>
                             </div>
 
+                            {/* Query */}
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                    {t.yourQuery}
+                                </label>
+                                <textarea
+                                    id="contact-query"
+                                    rows="4"
+                                    name="query"
+                                    value={formData.query}
+                                    onChange={handleChange}
+                                    className="input-field resize-none"
+                                    placeholder="I am interested in..."
+                                />
+                            </div>
+
+                            {/* Submit */}
                             <button
                                 type="submit"
+                                id="contact-submit"
                                 disabled={status === 'sending'}
-                                className="btn-primary w-full justify-center py-4"
+                                className="btn-primary w-full justify-center py-4 disabled:opacity-60 disabled:cursor-not-allowed"
                             >
-                                {status === 'sending' ? t.sending : t.sendMessage}
+                                {status === 'sending' ? (
+                                    <span className="flex items-center gap-2 justify-center">
+                                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                                        </svg>
+                                        {t.sending}
+                                    </span>
+                                ) : t.sendMessage}
                             </button>
 
+                            {/* Feedback */}
                             {status === 'success' && (
-                                <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-sm font-medium text-center animate-fade-in">
+                                <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-sm font-medium text-center animate-fade-in">
                                     {t.formSuccess}
                                 </div>
                             )}
