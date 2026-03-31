@@ -54,7 +54,7 @@ rkinstitute/
 3. **Install backend dependencies**
    ```bash
    cd ../backend
-   cp .env.example .env   # configure your environment
+   cp .env   # configure your environment
    npm install
    ```
 
