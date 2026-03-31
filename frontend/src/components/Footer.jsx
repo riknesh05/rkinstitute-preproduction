@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
+import rkLogo from '../assets/rkLogoGood.png'
 
 export default function Footer() {
     const { t } = useContext(AppContext)
@@ -12,13 +13,8 @@ export default function Footer() {
 
                     {/* Brand */}
                     <div className="space-y-6">
-                        <a href="#home" className="flex items-center gap-2.5">
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-lg select-none shadow-md">
-                                RK
-                            </div>
-                            <span className="font-bold text-xl text-slate-900 dark:text-white tracking-tight">
-                                RK <span className="text-primary-600 dark:text-primary-400">Institute</span>
-                            </span>
+                        <a href="#home" className="flex items-center gap-2">
+                            <img src={rkLogo} alt="RK Institute Logo" className="h-16 w-auto object-contain" />
                         </a>
                         <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs">
                             {t.aboutSub} - Empowering students with the skills they need for academic and career growth since 2009.

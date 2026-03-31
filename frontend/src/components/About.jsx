@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
-
+import rkLogoSq from '../assets/rkLogoicon.png'
 export default function About() {
     const { t } = useContext(AppContext)
     if (!t || !t.aboutTitle) return null
@@ -21,11 +21,12 @@ export default function About() {
                     <div className="relative">
                         {/* Main card */}
                         <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-primary-500 to-primary-700 p-10 h-80 flex items-center justify-center shadow-xl">
-                            <div className="text-center text-white">
+                            {/* <div className="text-center text-white">
                                 <div className="text-7xl mb-4">🏛️</div>
                                 <div className="text-3xl font-extrabold">RK Institute</div>
                                 <div className="text-primary-200 mt-2 text-sm font-medium">Est. 2009 · Chennai</div>
-                            </div>
+                            </div> */}
+                            <img src={rkLogoSq} alt="ntg"/>
                         </div>
                         {/* Floating badge */}
                         <div className="absolute -bottom-5 -right-5 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-5 border border-slate-100 dark:border-slate-700">

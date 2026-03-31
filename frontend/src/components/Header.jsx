@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
+import rkLogo from '../assets/rkLogoGood.png'
 
 export default function Header() {
     const { dark, setDark, lang, setLang, t } = useContext(AppContext)
@@ -26,13 +27,8 @@ export default function Header() {
                 <div className="flex items-center justify-between h-16">
 
                     {/* Logo */}
-                    <a href="#home" className="flex items-center gap-2.5 shrink-0">
-                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-sm select-none">
-                            RK
-                        </div>
-                        <span className="font-bold text-lg text-slate-900 dark:text-white leading-none">
-                            RK <span className="text-primary-600 dark:text-primary-400">Institute</span>
-                        </span>
+                    <a href="#home" className="flex items-center gap-2 shrink-0">
+                        <img src={rkLogo} alt="RK Institute Logo" className="h-12 w-auto object-contain" />
                     </a>
 
                     {/* Desktop Nav */}
