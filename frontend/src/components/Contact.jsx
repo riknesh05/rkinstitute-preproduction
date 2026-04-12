@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext'
-import axios from 'axios'
 
 export default function Contact() {
     const { t } = useContext(AppContext)
@@ -23,9 +22,26 @@ export default function Contact() {
 
         setStatus('sending')
         try {
-            await axios.post('/api/contact', formData)
-            setStatus('success')
-            setFormData({ name: '', email: '', phone: '', course: '', query: '' })
+            const data = new FormData()
+            data.append('access_key', '7e2992c2-76c1-4631-b887-2a99130df8fd')
+            data.append('name', formData.name)
+            data.append('email', formData.email)
+            data.append('phone', formData.phone)
+            data.append('course', formData.course)
+            data.append('message', formData.query)
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: data,
+            })
+            const result = await response.json()
+
+            if (result.success) {
+                setStatus('success')
+                setFormData({ name: '', email: '', phone: '', course: '', query: '' })
+            } else {
+                throw new Error(result.message || 'Submission failed')
+            }
             setTimeout(() => setStatus(null), 6000)
         } catch (err) {
             console.error(err)

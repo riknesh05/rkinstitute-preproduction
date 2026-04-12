@@ -20,7 +20,7 @@ export default function About() {
                     {/* Visual side */}
                     <div className="relative">
                         {/* Main card */}
-                        <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-primary-500 to-primary-700 p-10 h-80 flex items-center justify-center shadow-xl">
+                        <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-primary-500 to-primary-700 p-10 h-180 flex items-center justify-center shadow-xl">
                             {/* <div className="text-center text-white">
                                 <div className="text-7xl mb-4">🏛️</div>
                                 <div className="text-3xl font-extrabold">RK Institute</div>
