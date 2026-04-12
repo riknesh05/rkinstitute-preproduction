@@ -100,6 +100,22 @@ export default function Hero() {
             <div className="absolute bottom-10 right-0 w-80 h-80 bg-sky-200 dark:bg-sky-900/30 rounded-full blur-3xl opacity-40 translate-x-1/3 pointer-events-none" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+
+                {/* Institute Name — full-width centered above the grid */}
+                <div className="text-center mb-10">
+                    <div className="flex items-center justify-center gap-3 flex-wrap">
+                        <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-primary-600 to-sky-500 dark:from-primary-400 dark:to-sky-400 bg-clip-text text-transparent leading-tight">
+                            RK Typewriting Institute
+                        </h2>
+                        <span className="inline-flex items-center gap-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-3 py-1 rounded-full border border-green-200 dark:border-green-800 whitespace-nowrap">
+                            ✅ Govt. Approved
+                        </span>
+                    </div>
+                    <p className="text-slate-400 dark:text-slate-500 text-sm font-medium mt-2 tracking-wide">
+                        RK தட்டச்சு பயிலகம் · Panduruti
+                    </p>
+                </div>
+
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left: Content */}
