@@ -68,7 +68,7 @@ export default function Contact() {
                             <div className="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-2xl shrink-0">📍</div>
                             <div>
                                 <h4 className="font-bold text-slate-900 dark:text-white mb-1">Address</h4>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{t.addr}</p>
+                                <ul className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{t.addr.map((a, i) => <li key={i}>{a}</li>)}</ul>
                             </div>
                         </div>
 
@@ -90,11 +90,33 @@ export default function Contact() {
                         </div>
 
                         {/* Map Placeholder */}
-                        <div className="rounded-2xl overflow-hidden h-64 opacity-80 border border-slate-200 dark:border-slate-700">
-                            <div className="w-full h-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-sm font-medium">
-                                Google Map Embed Placeholder
-                            </div>
-                        </div>
+                        <div className="grid md:grid-cols-2 gap-4">
+  
+  {/* Branch 1 */}
+  <div className="rounded-2xl overflow-hidden h-64 border border-slate-200 dark:border-slate-700">
+    <h3 className="text-sm font-semibold mb-2">Branch 1</h3>
+    <iframe
+      title="Branch 1 Location"
+      src="https://www.google.com/maps?q=No.31/11+Madhi+Complex+Police+Line+4th+Street+Near+Perundhu+Nilayam+Panduruti+607106&output=embed"
+      className="w-full h-full border-0"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  {/* Branch 2 */}
+  <div className="rounded-2xl overflow-hidden h-64 border border-slate-200 dark:border-slate-700">
+    <h3 className="text-sm font-semibold mb-2">Branch 2</h3>
+    <iframe
+      title="Branch 2 Location"
+      src="https://www.google.com/maps?q=No.1+Birundhavan+Nagar+Gandhi+Road+Near+Jay+Jeyaraj+Printers+Panduruti+607106&output=embed"
+      className="w-full h-full border-0"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+</div>
                     </div>
 
                     {/* Form Side */}

@@ -44,11 +44,11 @@ export default function Footer() {
                         <div className="space-y-4">
                             <p className="text-slate-500 dark:text-slate-400 text-sm flex items-start gap-2.5">
                                 <span className="text-primary-600 dark:text-primary-400">📍</span>
-                                {t.addr}
+                                {t.addr.map((a, i) => <li key={i}>{a}</li>)}
                             </p>
                             <p className="text-slate-500 dark:text-slate-400 text-sm flex items-center gap-2.5">
                                 <span className="text-primary-600 dark:text-primary-400">📞</span>
-                                {t.ph1}
+                                {t.ph1} <br />{t.ph2}
                             </p>
                             <p className="text-slate-500 dark:text-slate-400 text-sm flex items-center gap-2.5">
                                 <span className="text-primary-600 dark:text-primary-400">✉️</span>
@@ -84,6 +84,9 @@ export default function Footer() {
                 <div className="pt-10 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
                     <p className="text-slate-400 dark:text-slate-500 text-xs font-medium">
                         {t.copyright}
+                    </p>
+                    <p className="text-slate-400 dark:text-slate-500 text-xs font-medium">
+                        {t.creator}
                     </p>
                     <div className="flex items-center gap-8">
                         <a href="#" className="text-xs text-slate-400 dark:text-slate-500 hover:text-primary-600 font-medium tracking-tight">Privacy Policy</a>

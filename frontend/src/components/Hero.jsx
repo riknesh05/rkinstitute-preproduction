@@ -122,7 +122,7 @@ export default function Hero() {
                             <a href="#courses" className="btn-primary">
                                 📚 {t.browseCourses}
                             </a>
-                            <a href="tel:+919876543210" className="btn-outline">
+                            <a href="tel:+919751928005" className="btn-outline">
                                 📞 {t.callUs}
                             </a>
                         </div>
